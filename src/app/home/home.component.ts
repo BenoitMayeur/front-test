@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
     // Finally, let's call the service to reset the basket. (Be sure that you have called the service inside the constructor !)
     console.log("click")
 
+    this.pizzas.map(pizza => pizza.numberOrdered = 0);
+
     this.counter = 0;
 
     this.basketService.resetBasket()
