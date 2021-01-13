@@ -5,13 +5,13 @@
     <button class="buyBtn" (click)="buyNow()">Buy Now</button>
   </div>
 </div>
-<app-pizzalist (isAdded)="updateList()"></app-pizzalist>
+<app-pizzalist (emitListPizza)="receiveList($event)"></app-pizzalist>
 
 
-<ng-template #testModal let-modal>
+<div *ngIf="openModal" class="div-modal">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Your order.</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -25,8 +25,8 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">
+    <button type="button" class="btn btn-outline-dark" (click)="confirmPayment()">
       Confirm
     </button>
   </div>
-</ng-template>
+</div>
