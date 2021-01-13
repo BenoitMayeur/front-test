@@ -7,7 +7,7 @@
         <button class="buyBtn" (click)="buyNow()">Buy Now</button>
       </div>
     </div>
-    <app-pizzalist (emitListPizza)="receiveList($event)"></app-pizzalist>
+    <app-pizzalist (myOutput) ="getChildData($event)"></app-pizzalist>
   </div>
 
   <div *ngIf="openModal" class="div-modal">

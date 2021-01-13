@@ -24,21 +24,6 @@ export class HomeComponent implements OnInit {
     */
   }
 
-  receiveList(listPizzaOrdered: Pizza[]){
-
-    let amountPizza: number = 0;
-
-    console.log("message reçu")
-
-    for(let pizza of listPizzaOrdered){
-      amountPizza = amountPizza + pizza.numberOrdered
-    }
-
-    this.counter = amountPizza;
-
-    console.log(this.counter)
-  }
-
   resetAll() {
     // First, you need to set the value of the total Amount and the number of pizza Ordered to every pizza to 0 (use map)
     // Then, don't forget to also reset the counter
@@ -49,6 +34,17 @@ export class HomeComponent implements OnInit {
 
     this.basketService.resetBasket()
   }
+
+  getChildData(){  
+    let amountPizza: number = 0;
+
+    for(let pizza of this.pizzas){
+      amountPizza = amountPizza + pizza.numberOrdered
+    }
+
+    this.counter = amountPizza;
+
+  }  
 
   buyNow() {
     /*
