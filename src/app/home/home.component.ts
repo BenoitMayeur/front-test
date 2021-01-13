@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   counter = 0;
   constructor() { }
   pizzas = PIZZAS;
+  totalPrice: number = 0;
 
   ngOnInit() { }
 
