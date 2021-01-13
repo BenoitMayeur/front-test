@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     // First, you need to set the value of the total Amount and the number of pizza Ordered to every pizza to 0 (use map)
     // Then, don't forget to also reset the counter
     // Finally, let's call the service to reset the basket. (Be sure that you have called the service inside the constructor !)
+    console.log("click")
   }
 
   buyNow() {
@@ -32,5 +33,6 @@ export class HomeComponent implements OnInit {
      If the total amount of the basket is greater than 0 and equal or less to 200,
     you can open the modal that contains the pizza choosen
      */
+    console.log("click2")
   }
 }

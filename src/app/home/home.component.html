@@ -1,8 +1,8 @@
 <div class="home-header">
   <h3>Pizza ordered : {{ counter }}</h3>
   <div class="buttons">
-    <button class="resetBtn" (Onclick)="resetAll()">Reset</button>
-    <button class="buyBtn" (Onclick)="buyNow()">Buy Now</button>
+    <button class="resetBtn" (click)="resetAll()">Reset</button>
+    <button class="buyBtn" (click)="buyNow()">Buy Now</button>
   </div>
 </div>
 <app-pizzalist (isAdded)="updateList()"></app-pizzalist>
