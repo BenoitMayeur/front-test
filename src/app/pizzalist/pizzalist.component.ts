@@ -33,12 +33,19 @@ export class PizzalistComponent implements OnInit {
   decrementNumber(pizza: Pizza) {
     // Decrement the number of the ordered pizza
     // the total amount of the selected pizza should be reduced as well
+    pizza.numberOrdered--;
+    pizza.totalAmountProduct = pizza.price * pizza.numberOrdered;
     // call the update list
+  
   }
 
   incrementNumber(pizza: Pizza) {
     // Increment the number of the ordered pizza
     // the total amount of the selected pizza should be augmented as well
+    console.log(pizza)
+    pizza.numberOrdered++;
+    pizza.totalAmountProduct = pizza.price * pizza.numberOrdered;
     // call the update list
+  
   }
 }
