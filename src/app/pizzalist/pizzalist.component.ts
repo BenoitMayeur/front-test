@@ -42,10 +42,22 @@ export class PizzalistComponent implements OnInit {
   incrementNumber(pizza: Pizza) {
     // Increment the number of the ordered pizza
     // the total amount of the selected pizza should be augmented as well
-    console.log(pizza)
+
     pizza.numberOrdered++;
     pizza.totalAmountProduct = pizza.price * pizza.numberOrdered;
     // call the update list
-  
+
+    let lengthList = this.pizzaList.length;
+
+    if(lengthList !== 0){
+      if(!(this.pizzaList.some( onePizza => onePizza.id === pizza.id ))){
+        this.pizzaList.push(pizza);
+      }
+    }
+    else{
+      this.pizzaList.push(pizza);
+    }
+
+    console.log(this.pizzaList)
   }
 }
