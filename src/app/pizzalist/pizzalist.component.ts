@@ -10,6 +10,7 @@ import { PIZZAS } from "../pizzasList";
 import { BasketComponent } from "../basket/basket.component";
 import { BasketService } from "../basket.service";
 import { Pizza } from "../pizza";
+import { PizzaService } from "../pizza.service";
 
 @Component({
   selector: "app-pizzalist",
@@ -19,7 +20,10 @@ import { Pizza } from "../pizza";
 export class PizzalistComponent implements OnInit {
   // @Input() name: string;
   @Output() isAdded = new EventEmitter<boolean>();
-  constructor(private basketService: BasketService) {}
+
+  @Output() myOutput:EventEmitter<Pizza[]>= new EventEmitter();
+
+  constructor(private basketService: BasketService, private pizzaService: PizzaService) {}
 
   ngOnInit() {}
   pizzas = PIZZAS;
@@ -27,8 +31,9 @@ export class PizzalistComponent implements OnInit {
 
   updateList(pizza: Pizza, addedToTotal: boolean) {
     this.basketService.addToTotalAmount(pizza.price, addedToTotal);
-    this.isAdded.emit(addedToTotal);
+    this.isAdded.emit(addedToTotal);    
   }
+
 
   decrementNumber(pizza: Pizza) {
     // Decrement the number of the ordered pizza
@@ -48,9 +53,18 @@ export class PizzalistComponent implements OnInit {
       this.pizzaList.push(pizza);
     }
 
-    console.log(this.pizzaList)
+    this.pizzaService.update(this.pizzaList);
+
+    this.updateList(pizza, false)
+
+    this.sendValues(this.pizzaList)
   
   }
+
+  sendValues(pizza){  
+    this.myOutput.emit(pizza);  
+    
+ }
 
   incrementNumber(pizza: Pizza) {
     // Increment the number of the ordered pizza
@@ -59,6 +73,8 @@ export class PizzalistComponent implements OnInit {
     pizza.numberOrdered++;
     pizza.totalAmountProduct = pizza.price * pizza.numberOrdered;
     // call the update list
+
+    //this.updateList(pizza, true)
 
     let lengthList = this.pizzaList.length;
 
@@ -71,6 +87,11 @@ export class PizzalistComponent implements OnInit {
       this.pizzaList.push(pizza);
     }
 
-    console.log(this.pizzaList)
+    this.updateList(pizza, true)
+
+    this.pizzaService.update(this.pizzaList);
+
+    this.sendValues(this.pizzaList)
   }
+
 }
