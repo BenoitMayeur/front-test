@@ -55,9 +55,25 @@ export class HomeComponent implements OnInit {
      If the total amount of the basket is greater than 0 and equal or less to 200,
     you can open the modal that contains the pizza choosen
      */
-    console.log("click2")
 
-    this.openModal = true;
+    this.totalPrice = 0;
+    let amountPizzas: number = 0;
+
+    for(let pizza of this.pizzas){
+      amountPizzas = amountPizzas + pizza.numberOrdered
+    }
+
+    for(let pizza of this.pizzas){
+      this.totalPrice = this.totalPrice + (pizza.numberOrdered*pizza.price);
+    }
+      this.totalPrice = Math.round(this.totalPrice*100)/100;
+
+      console.log("this.totalPrice", this.totalPrice)
+
+    if(amountPizzas>0 && this.totalPrice<=200){
+      this.openModal = true;
+    }
+
   }
 
   closeModal(){

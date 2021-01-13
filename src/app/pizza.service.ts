@@ -1,14 +1,24 @@
 import {Injectable, Output, EventEmitter} from '@angular/core';
+import { Pizza } from './pizza';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PizzaService {
+
+  globalListPizza: Pizza[] = [];
+
   constructor() {}
 
-  get() {}
+  get(): Pizza[] {
+    return this.globalListPizza;
+  }
 
-  update() {}
+  update(listPizza: Pizza[]) {
+    this.globalListPizza = listPizza;
+  }
 
-  reset() {}
+  reset() {
+    this.globalListPizza = [];
+  }
 }
