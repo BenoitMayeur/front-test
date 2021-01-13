@@ -36,6 +36,19 @@ export class PizzalistComponent implements OnInit {
     pizza.numberOrdered--;
     pizza.totalAmountProduct = pizza.price * pizza.numberOrdered;
     // call the update list
+
+    let lengthList = this.pizzaList.length;
+
+    if(lengthList !== 0){
+      if(!(this.pizzaList.some( onePizza => onePizza.id === pizza.id ))){
+        this.pizzaList.push(pizza);
+      }
+    }
+    else{
+      this.pizzaList.push(pizza);
+    }
+
+    console.log(this.pizzaList)
   
   }
 
